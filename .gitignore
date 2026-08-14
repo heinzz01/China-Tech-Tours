@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Tool-/Editor-Konfiguration (enthaelt teils Tokens)
+.mcp.json
+.lingcode/
+.cursor/
+.claude/
+
+# Interne Design-Vorschauen (nicht fuer die Live-Seite)
+sektor-varianten.html
+video-varianten.html
+
+# Unkomprimierte Originale der Firmen-Clips (die web-optimierten
+# Versionen liegen eine Ebene hoeher und werden ausgeliefert)
+assets/video/companies/_orig/
+
+# Das Setup-Skript selbst gehoert nicht ins oeffentliche Repo
+setup-github.sh

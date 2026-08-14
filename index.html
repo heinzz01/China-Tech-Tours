@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Frontier — China tech &amp; business tours</title>
+<link rel="icon" href="assets/icon/favicon.ico" sizes="any">
+<link rel="icon" href="assets/icon/icon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icon/i32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icon/i180.png">
+<meta name="theme-color" content="#070e28">
+<style>
+  :root{
+    /* defera-style midnight palette */
+    --bg:#070e28;
+    --bg-soft:#0a1233;
+    --navy:#0f1952;
+    --navy-2:#243b7a;
+    --blue:#3d5a8c;
+    --blue-bright:#1025b2;
+    --blue-light:#6b8bc4;
+    --blue-pale:#a8b5db;
+    --green:#00b67a;
+    --green-soft:#34d399;
+    --text:#eef1f8;
+    --text-soft:rgba(255,255,255,.74);
+    --muted:rgba(255,255,255,.52);
+    --glass:rgba(255,255,255,.045);
+    --glass-2:rgba(255,255,255,.07);
+    --line:rgba(255,255,255,.10);
+    --line-soft:rgba(255,255,255,.07);
+    --serif:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    color:var(--text);
+    background:
+      radial-gradient(ellipse 90% 55% at 50% -5%, rgba(36,59,122,.55), transparent 60%),
+      radial-gradient(ellipse at 85% 8%, rgba(0,182,122,.10), transparent 45%),
+      radial-gradient(ellipse at 12% 28%, rgba(16,37,178,.16), transparent 45%),
+      var(--bg);
+    background-attachment:fixed;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+  h1,h2,h3{font-family:var(--serif);font-weight:700;letter-spacing:-.02em;line-height:1.06;color:#fff}
+  a{color:inherit;text-decoration:none}
+  .eyebrow{
+    font-family:var(--sans);font-size:.72rem;font-weight:700;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--blue-pale);
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(7,14,40,.72);backdrop-filter:saturate(140%) blur(14px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{font-family:var(--serif);font-size:1.45rem;font-weight:700;letter-spacing:-.02em;color:#fff}
+  .brand b{
+    background:linear-gradient(135deg,var(--blue-light),var(--green-soft));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .brand .with{font-size:.85rem;color:var(--muted);font-weight:400;margin-left:.55rem;letter-spacing:0}
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a{font-size:.95rem;color:var(--text-soft)}
+  .nav-links a:hover{color:#fff}
+  .lang{display:flex;gap:2px;margin-left:8px}
+  .lang button{
+    font-family:var(--sans);font-size:.82rem;font-weight:600;letter-spacing:.05em;
+    background:none;border:none;color:var(--muted);cursor:pointer;padding:4px 6px;
+  }
+  .lang button.active{color:#fff;border-bottom:2px solid var(--green)}
+
+  /* ---------- hero (full-bleed video rotation) ---------- */
+  .hero{
+    position:relative;overflow:hidden;background:#000;
+    display:flex;align-items:center;
+    min-height:88vh;padding:110px 0 96px;
+  }
+  .hero video.bgv{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    opacity:0;transition:opacity 1.4s ease;
+  }
+  .hero video.bgv.on{opacity:1}
+  .hero::after{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:
+      linear-gradient(180deg, rgba(7,14,40,.62) 0%, rgba(7,14,40,.30) 42%, rgba(7,14,40,.92) 100%),
+      radial-gradient(ellipse 90% 70% at 18% 60%, rgba(7,14,40,.45), transparent 60%);
+  }
+  .hero .wrap{position:relative;z-index:2}
+  .hero-dots{display:flex;gap:6px;margin-top:30px}
+  .hero-dots i{width:22px;height:3px;background:rgba(255,255,255,.3);border-radius:2px;transition:background .3s}
+  .hero-dots i.on{background:#fff}
+  .hero .eyebrow{
+    display:inline-block;margin-bottom:24px;padding:7px 15px;border-radius:999px;
+    background:var(--glass);border:1px solid var(--line);color:var(--blue-pale);
+  }
+  .hero h1{font-size:clamp(2.7rem,6.2vw,4.8rem);max-width:15ch}
+  .hero h1 .grad{
+    background:linear-gradient(120deg,#fff 0%,var(--blue-light) 55%,var(--green-soft) 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .hero .lede{
+    margin-top:26px;max-width:58ch;font-size:1.18rem;color:var(--text-soft);
+  }
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
+  .btn{
+    display:inline-block;font-size:.98rem;font-weight:600;
+    padding:13px 28px;border-radius:999px;cursor:pointer;border:1px solid transparent;
+    transition:transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{
+    background:linear-gradient(135deg,var(--blue-bright),var(--navy-2));
+    color:#fff;box-shadow:0 8px 30px -8px rgba(16,37,178,.7), inset 0 1px 0 rgba(255,255,255,.18);
+  }
+  .btn-primary:hover{box-shadow:0 12px 38px -8px rgba(16,37,178,.85), inset 0 1px 0 rgba(255,255,255,.22)}
+  .btn-ghost{background:var(--glass);border-color:var(--line);color:#fff;backdrop-filter:blur(8px)}
+  .btn-ghost:hover{background:var(--glass-2);border-color:rgba(255,255,255,.22)}
+
+  /* ---------- placeholder media ---------- */
+  .ph{
+    position:relative;border-radius:24px;overflow:hidden;
+    background:
+      radial-gradient(ellipse 70% 80% at 30% 20%, rgba(61,90,140,.35), transparent 60%),
+      linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.015));
+    border:1px solid var(--line);
+    box-shadow:0 30px 70px -30px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.08);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;
+    min-height:120px;
+  }
+  .ph.wide{aspect-ratio:16/7}
+  .ph.tall{aspect-ratio:4/5}
+  .ph .ph-label{padding:8px 16px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:999px}
+
+  /* ---------- trust ---------- */
+  .trust{padding:62px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+  .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+  .trust-item h3{font-size:1.12rem}
+  .trust-item p{margin-top:8px;color:var(--muted);font-size:.95rem;line-height:1.5}
+
+  /* ---------- products ---------- */
+  .products{padding:96px 0}
+  .products .eyebrow{display:block;margin-bottom:14px}
+  .products .sec-head{font-size:clamp(1.9rem,4vw,2.7rem);max-width:18ch}
+  .prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:42px}
+  .prod{
+    background:linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    border:1px solid var(--line);border-radius:24px;
+    padding:40px 36px;display:flex;flex-direction:column;
+    box-shadow:0 30px 60px -32px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.07);
+    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .prod:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.2);box-shadow:0 40px 80px -34px rgba(16,37,178,.5), inset 0 1px 0 rgba(255,255,255,.10)}
+  .prod .eyebrow{display:block;margin-bottom:14px;color:var(--green-soft)}
+  .prod h3{font-size:1.85rem}
+  .prod p.intro{margin-top:16px;color:var(--text-soft);font-size:1.05rem}
+  .prod ul{list-style:none;margin:24px 0 8px}
+  .prod li{
+    position:relative;padding:11px 0 11px 28px;border-top:1px solid var(--line-soft);
+    color:var(--text-soft);font-size:1rem;
+  }
+  .prod li:first-of-type{border-top:none}
+  .prod li::before{content:"→";position:absolute;left:0;color:var(--green);font-weight:700}
+  .prod .who{margin-top:auto;padding-top:18px;color:var(--muted);font-size:.92rem}
+  .prod .btn{margin-top:24px;align-self:flex-start}
+
+  /* ---------- titans / sectors ---------- */
+  .dark-sec{
+    position:relative;padding:92px 0;
+    background:
+      radial-gradient(ellipse 60% 90% at 85% 0%, rgba(0,182,122,.10), transparent 55%),
+      radial-gradient(ellipse 70% 90% at 0% 100%, rgba(16,37,178,.18), transparent 55%),
+      var(--bg-soft);
+    border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);
+  }
+  .dark-sec .eyebrow{color:var(--blue-pale)}
+  .dark-sec h2{font-size:clamp(2rem,4.5vw,3rem);color:#fff;margin-top:14px}
+  .dark-sec .sub{color:var(--text-soft);max-width:56ch;margin-top:16px;font-size:1.05rem}
+  .grid{display:grid;gap:18px;margin-top:46px}
+  .sectors{grid-template-columns:repeat(3,1fr)}
+  .card{
+    background:linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    border:1px solid var(--line);border-radius:18px;
+    padding:26px 24px;transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover{border-color:rgba(255,255,255,.22);transform:translateY(-3px);box-shadow:0 24px 50px -28px rgba(16,37,178,.55)}
+  .card h3{font-size:1.3rem;color:#fff}
+  .card .cos{margin-top:10px;color:var(--text-soft);font-size:1rem}
+  .card .cos b{color:var(--green-soft);font-weight:600}
+  .card.tailored{
+    background:linear-gradient(150deg, rgba(0,182,122,.16), rgba(16,37,178,.10));
+    border-color:rgba(0,182,122,.32);
+  }
+  .card.tailored .cos{color:var(--text-soft)}
+  .logos{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+
+  /* ---------- sector rows with company reels ---------- */
+  .sector-rows{margin-top:46px;display:flex;flex-direction:column}
+  .srow{
+    display:grid;grid-template-columns:300px 1fr;gap:44px;align-items:center;
+    padding:34px 0;border-top:1px solid var(--line-soft);
+  }
+  .srow:first-child{border-top:none;padding-top:8px}
+  .srow .txt h3{font-size:1.5rem;color:#fff}
+  .srow .txt p{margin-top:10px;color:var(--text-soft);font-size:.98rem}
+  .srow .txt .names{margin-top:12px;color:var(--muted);font-size:.88rem}
+  .srow .txt .names b{color:var(--green-soft);font-weight:600}
+  .srow .tiles{display:flex;gap:14px;justify-content:flex-end}
+  .srow .tiles .reel{width:172px;flex:none}
+  .card.tailored.full{margin-top:34px}
+
+  .reel{
+    position:relative;aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:#0a0f24;
+    isolation:isolate;border:1px solid var(--line-soft);
+  }
+  .reel img.poster,.reel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .reel video{opacity:0;transition:opacity .5s ease}
+  .reel video.on{opacity:1}
+  .reel .cap{
+    position:absolute;left:0;right:0;bottom:0;z-index:2;padding:34px 12px 11px;
+    background:linear-gradient(180deg,transparent,rgba(4,8,22,.85));color:#fff;
+    display:flex;align-items:center;gap:8px;
+  }
+  .reel .cap img{width:18px;height:18px;object-fit:contain;background:#fff;border-radius:4px;padding:2px;flex:none}
+  .reel .cap b{font-size:.85rem;font-weight:600;letter-spacing:.01em}
+
+  .logo-chip{
+    display:inline-flex;align-items:center;gap:8px;background:#fff;
+    border-radius:10px;padding:6px 12px 6px 9px;box-shadow:0 2px 10px rgba(0,0,0,.35);
+  }
+  .logo-chip img{width:20px;height:20px;object-fit:contain;display:block;flex:none}
+  .logo-chip b{font-size:.84rem;color:#1b1a18;font-weight:600;white-space:nowrap}
+  .note{margin-top:34px;color:var(--muted);font-size:.98rem}
+
+  /* ---------- about ---------- */
+  .about{padding:96px 0}
+  .about h2{font-size:clamp(2rem,4.5vw,2.8rem);margin-top:12px}
+  .about-grid{display:grid;grid-template-columns:1.35fr .85fr;gap:52px;align-items:start;margin-top:30px}
+  .about p{margin-top:18px;color:var(--text-soft);font-size:1.05rem}
+  .about p.lead-line{font-size:1.18rem;color:#fff;margin-top:24px;font-weight:500}
+  .about .stat{
+    display:inline-block;margin-top:28px;padding:8px 16px;border-radius:999px;
+    background:var(--glass);border:1px solid var(--line);
+    font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-pale);
+  }
+  .about .ph.tall{min-height:480px;margin-top:0}
+  .about-photo{margin:0}
+  .about-photo img{
+    display:block;width:100%;height:auto;border-radius:20px;
+    border:1px solid var(--line);
+    box-shadow:0 30px 60px -32px rgba(0,0,0,.65);
+  }
+  .about-photo figcaption{
+    margin-top:12px;color:var(--muted);font-size:.86rem;line-height:1.5;
+  }
+
+  /* ---------- contact ---------- */
+  .contact{
+    padding:88px 0;border-top:1px solid var(--line-soft);
+    background:
+      radial-gradient(ellipse 70% 80% at 80% 100%, rgba(16,37,178,.18), transparent 55%),
+      var(--bg-soft);
+  }
+  .contact h2{font-size:clamp(2rem,4.5vw,2.8rem);margin-top:14px}
+  .contact .intro{margin-top:16px;max-width:46ch;color:var(--text-soft);font-size:1.1rem}
+  .contact-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;margin-top:42px;align-items:start}
+  .contact-aside .alt{margin-top:26px;color:var(--muted);font-size:.95rem}
+  .contact-aside .alt a{color:var(--green-soft);border-bottom:1px solid var(--line)}
+
+  form.lead{
+    background:linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+    border:1px solid var(--line);border-radius:24px;padding:34px 32px;
+    box-shadow:0 40px 80px -36px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.08);
+  }
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .field{display:flex;flex-direction:column;margin-top:16px}
+  .field:first-child,.frow .field{margin-top:0}
+  .frow + .field,.frow + .frow{margin-top:16px}
+  .field label{font-size:.82rem;font-weight:600;color:var(--text-soft);margin-bottom:7px;letter-spacing:.01em}
+  .field input,.field select,.field textarea{
+    font-family:var(--sans);font-size:1rem;color:#fff;
+    background:rgba(7,14,40,.55);border:1px solid var(--line);border-radius:12px;
+    padding:12px 14px;width:100%;transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .field select option{background:#0a1233;color:#fff}
+  .field textarea{min-height:110px;resize:vertical}
+  .field input::placeholder,.field textarea::placeholder{color:var(--muted)}
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(0,182,122,.18);
+  }
+  form.lead .btn{margin-top:22px;width:100%;text-align:center;border:none}
+  form.lead .btn:disabled{opacity:.6;cursor:default;transform:none}
+  .formnote{margin-top:14px;font-size:.82rem;color:var(--muted);text-align:center}
+  .formmsg{display:none;margin-top:18px;padding:14px 16px;border-radius:12px;font-size:.95rem}
+  .formmsg.ok{display:block;background:rgba(0,182,122,.14);border:1px solid rgba(0,182,122,.4);color:var(--green-soft)}
+  .formmsg.err{display:block;background:rgba(239,68,68,.14);border:1px solid rgba(239,68,68,.4);color:#fca5a5}
+  .hp{position:absolute;left:-9999px;top:-9999px}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--bg);color:var(--muted);padding:40px 0;font-size:.9rem;border-top:1px solid var(--line-soft)}
+  footer .nav{height:auto;flex-wrap:wrap;gap:14px}
+  footer .brand{font-size:1.2rem}
+
+  /* ---------- lang visibility ---------- */
+  .en{display:none}
+  html[lang="en"] .en{display:inline}
+  html[lang="en"] .de{display:none}
+  html[lang="en"] li.en,html[lang="en"] p.en{display:block}
+  html[lang="de"] .de{display:inline}
+  html[lang="de"] .en{display:none}
+  li.de,li.en,p.de,p.en{display:block}
+  html[lang="en"] li.de,html[lang="en"] p.de{display:none}
+  html[lang="de"] li.en,html[lang="de"] p.en{display:none}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:840px){
+    .trust-grid{grid-template-columns:repeat(2,1fr);gap:24px}
+    .sectors{grid-template-columns:repeat(2,1fr)}
+    .srow{grid-template-columns:1fr;gap:20px}
+    .srow .tiles{justify-content:flex-start;flex-wrap:wrap}
+    .srow .tiles .reel{width:calc(33.3% - 10px);min-width:130px}
+    .prod-grid{grid-template-columns:1fr}
+    .about-grid{grid-template-columns:1fr;gap:32px}
+    .about .ph.tall{min-height:320px}
+    .contact-grid{grid-template-columns:1fr;gap:32px}
+    .nav-links a{display:none}
+    .nav-links a.keep{display:inline}
+  }
+  @media(max-width:560px){
+    .trust-grid{grid-template-columns:1fr}
+    .sectors{grid-template-columns:1fr}
+    .hero{min-height:72vh;padding:80px 0 64px}
+    .frow{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">China&nbsp;<b>Frontier</b><span class="with">Peter &amp; Xi</span></div>
+    <nav class="nav-links">
+      <a href="#offering"><span class="de">Angebot</span><span class="en">Offering</span></a>
+      <a href="#about"><span class="de">Über uns</span><span class="en">About</span></a>
+      <a class="keep" href="#contact"><span class="de">Kontakt</span><span class="en">Contact</span></a>
+      <div class="lang">
+        <button id="b-de" onclick="setLang('de')">DE</button>
+        <button id="b-en" class="active" onclick="setLang('en')">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="de">China Tech- &amp; Business-Touren</span><span class="en">China tech &amp; business tours</span></span>
+    <h1>
+      <span class="de">Tritt ein in die Unternehmen, die <span class="grad">Chinas Zukunft</span> gestalten.</span>
+      <span class="en">Step inside the companies building <span class="grad">China's future</span>.</span>
+    </h1>
+    <p class="lede">
+      <span class="de">Über Chinas Tech-Konzerne liest du seit Jahren. Wir bringen dich hin
+        und sind bei jedem Termin dabei.</span>
+      <span class="en">You've read the headlines. Now see what's behind them: Tencent, Alibaba, Huawei
+        and the companies shaping what's next, with us on the ground at every step.</span>
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#contact"><span class="de">Unverbindlich anfragen</span><span class="en">Register your interest</span></a>
+      <a class="btn btn-ghost" href="#offering"><span class="de">Mehr Details</span><span class="en">What to expect</span></a>
+    </div>
+    <div class="hero-dots" id="heroDots" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- TRUST POINTS -->
+<section class="trust">
+  <div class="wrap trust-grid">
+    <div class="trust-item">
+      <h3><span class="de">Deutsch &amp; Chinesisch</span><span class="en">German &amp; Chinese</span></h3>
+      <p><span class="de">Ein Paar, das beide Welten kennt</span><span class="en">A couple who knows both worlds</span></p>
+    </div>
+    <div class="trust-item">
+      <h3><span class="de">Vor Ort</span><span class="en">On the Ground</span></h3>
+      <p><span class="de">Wir sind in China — die ganze Zeit an deiner Seite</span><span class="en">We're in China, with you the whole time</span></p>
+    </div>
+    <div class="trust-item">
+      <h3><span class="de">Echter Zugang</span><span class="en">Real Access</span></h3>
+      <p><span class="de">Türen, die allein schwer aufgehen</span><span class="en">Doors that are hard to open alone</span></p>
+    </div>
+    <div class="trust-item">
+      <h3><span class="de">Rundum organisiert</span><span class="en">Fully Handled</span></h3>
+      <p><span class="de">Hotels, Transport und Logistik — alles geregelt</span><span class="en">Hotels, transport and logistics, all taken care of</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- OFFERING -->
+<section class="products" id="offering">
+  <div class="wrap">
+    <span class="eyebrow"><span class="de">Unser Angebot</span><span class="en">Our offering</span></span>
+    <h2 class="sec-head"><span class="de">Zwei Wege, Chinas Tech-Welt zu erleben</span><span class="en">Two ways to experience China's tech world</span></h2>
+    <div class="prod-grid">
+
+      <div class="prod">
+        <span class="eyebrow">China Tech Tour</span>
+        <h3><span class="de">Chinas Tech-Welt, in echt</span><span class="en">China's Tech World, For Real</span></h3>
+        <p class="intro"><span class="de">Für Neugierige. Erlebe das China, über das die meisten nur lesen: die Unternehmen, die Energie, das Tempo eines Landes in Bewegung — mit Stadt und Kultur als Würze.</span><span class="en">For the curious. See the China most people only read about: the companies, the energy, the pace of a country moving fast, with some of the cities and culture along the way.</span></p>
+        <ul>
+          <li><span class="de">Besuche bei Unternehmen wie Tencent, Alibaba, Huawei, BYD und DJI</span><span class="en">Visits to companies like Tencent, Alibaba, Huawei, BYD and DJI</span></li>
+          <li><span class="de">Ein Blick hinter die Kulissen, wie chinesische Unternehmen wirklich arbeiten</span><span class="en">A look inside how Chinese companies actually work</span></li>
+          <li><span class="de">Stadt, Essen und Kultur in die Reise eingewoben</span><span class="en">City, food and culture woven into the trip</span></li>
+          <li><span class="de">Rundum-Paket: Flüge, Hotels, Transfers, Dolmetscher</span><span class="en">Everything handled, so you can just take it in</span></li>
+        </ul>
+        <p class="who"><span class="de">Für Führungskräfte, Gründer und echte Neugierige</span><span class="en">For executives, founders and the genuinely curious</span></p>
+        <a class="btn btn-primary" href="#contact" onclick="pickInterest('China Tech Tour')"><span class="de">Unverbindlich anfragen</span><span class="en">Request a China Tech Tour</span></a>
+      </div>
+
+      <div class="prod">
+        <span class="eyebrow">Business Access</span>
+        <h3><span class="de">China, zu deinen Bedingungen</span><span class="en">China, on Your Terms</span></h3>
+        <p class="intro"><span class="de">Du kommst mit einem konkreten Ziel: ein Produkt, ein Lieferant, ein Partner. Wir bauen alles darum herum und bleiben an deiner Seite — vom ersten Meeting bis zum Abschluss.</span><span class="en">You come with a concrete goal: a product, a supplier, a partner. We build everything around it and stay with you, from the first meeting to the deal.</span></p>
+        <ul>
+          <li><span class="de">Lieferanten- und Herstellersuche</span><span class="en">Supplier and manufacturer search</span></li>
+          <li><span class="de">Besuche und Termine rund um dein Ziel</span><span class="en">Visits and meetings arranged around your goal</span></li>
+          <li><span class="de">Verhandlung und Kommunikation, durchgehend begleitet</span><span class="en">Negotiation and communication, fully supported</span></li>
+          <li><span class="de">Die richtigen Kontakte, auf dein Geschäft zugeschnitten</span><span class="en">The right contacts, built for your business</span></li>
+        </ul>
+        <p class="who"><span class="de">Für alle mit echtem Geschäft in China</span><span class="en">For anyone with real business to do in China</span></p>
+        <a class="btn btn-ghost" href="#contact" onclick="pickInterest('Business Access')"><span class="de">Individuell anfragen</span><span class="en">Request Business Access</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section class="dark-sec" id="sectors">
+  <div class="wrap">
+    <span class="eyebrow"><span class="de">Unternehmen &amp; Branchen, die du erleben kannst</span><span class="en">Companies &amp; sectors you can experience</span></span>
+    <h2><span class="de">Die Namen, die Chinas Zukunft bauen</span><span class="en">The names building China's future</span></h2>
+    <p class="sub"><span class="de">Vom Software-Giganten bis zum Flugauto — ein Zugang, den die meisten nie bekommen.</span><span class="en">From software giants to flying cars — access most people never get.</span></p>
+
+    <div class="sector-rows">
+
+      <div class="srow">
+        <div class="txt">
+          <h3><span class="de">Tech-Giganten</span><span class="en">Tech Titans</span></h3>
+          <p><span class="de">Die Plattformen, auf denen Chinas digitales Leben läuft — Campus, Showrooms, Einblicke von innen.</span><span class="en">The platforms running China's digital life — campuses, showrooms, a look from the inside.</span></p>
+          <p class="names"><b>Alibaba</b> · <b>Huawei</b> · <b>Tencent</b></p>
+        </div>
+        <div class="tiles">
+          <div class="reel" data-src="assets/video/companies/alibaba.mp4">
+            <img class="poster" src="assets/video/companies/alibaba.jpg" alt="Alibaba" loading="lazy">
+            <video muted loop playsinline preload="none" poster="assets/video/companies/alibaba.jpg"></video>
+            <div class="cap"><img src="assets/logos/alibaba.svg" alt="" onerror="this.remove()"><b>Alibaba</b></div>
+          </div>
+          <div class="reel" data-src="assets/video/companies/huawei.mp4">
+            <img class="poster" src="assets/video/companies/huawei.jpg" alt="Huawei" loading="lazy">
+            <video muted loop playsinline preload="none" poster="assets/video/companies/huawei.jpg"></video>
+            <div class="cap"><img src="assets/logos/huawei.svg" alt="" onerror="this.remove()"><b>Huawei</b></div>
+          </div>
+          <div class="reel" data-src="assets/video/companies/tencent.mp4">
+            <img class="poster" src="assets/video/companies/tencent.jpg" alt="Tencent" loading="lazy">
+            <video muted loop playsinline preload="none" poster="assets/video/companies/tencent.jpg"></video>
+            <div class="cap"><img src="assets/logos/tencent.png" alt="" onerror="this.remove()"><b>Tencent</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="srow">
+        <div class="txt">
+          <h3><span class="de">Robotik &amp; Drohnen</span><span class="en">Robotics &amp; Drones</span></h3>
+          <p><span class="de">Humanoide, Vierbeiner und der Weltmarktführer bei Drohnen — nicht auf der Messe, sondern dort, wo sie gebaut werden.</span><span class="en">Humanoids, four-legged robots and the world's leading drone maker — not at a trade show, but where they're built.</span></p>
+          <p class="names"><b>Unitree</b> · <b>UBTECH</b> · <b>DJI</b></p>
+        </div>
+        <div class="tiles">
+          <div class="reel" data-src="assets/video/companies/unitree.mp4">
+            <img class="poster" src="assets/video/companies/unitree.jpg" alt="Unitree" loading="lazy">
+            <video muted loop playsinline preload="none" poster="assets/video/companies/unitree.jpg"></video>
+            <div class="cap"><img src="assets/logos/unitree.png" alt="" onerror="this.remove()"><b>Unitree</b></div>
+          </div>
+          <div class="reel" data-src="assets/video/companies/ubtech.mp4">
+            <img class="poster" src="assets/video/companies/ubtech.jpg" alt="UBTECH" loading="lazy">
+            <video muted loop playsinline preload="none" poster="assets/video/companies/ubtech.jpg"></video>
+            <div class="cap"><img src="assets/logos/ubtech.png" alt="" onerror="this.remove()"><b>UBTECH</b></div>
+          </div>
+          <div class="reel" data-src="assets/video/companies/dji.mp4">
+            <img class="poster" src="assets/video/companies/dji.jpg" alt="DJI" loading="lazy">
+            <video muted loop playsinline preload="none" poster="assets/video/companies/dji.jpg"></video>
+            <div class="cap"><img src="assets/logos/dji.svg" alt="" onerror="this.remove()"><b>DJI</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="srow">
+        <div class="txt">
+          <h3><span class="de">Flugautos</span><span class="en">Flying Cars</span></h3>
+          <p><span class="de">Urbane Luftmobilität, die in China schon im Testbetrieb fliegt.</span><span class="en">Urban air mobility that's already in test flight in China.</span></p>
+          <p class="names"><b>EHang</b> · <b>XPeng AeroHT</b></p>
+        </div>
+        <div class="tiles">
+          <div class="reel" data-src="assets/video/companies/ehang.mp4">
+            <img class="poster" src="assets/video/companies/ehang.jpg" alt="EHang" loading="lazy">
+            <video muted loop playsinline preload="none" poster="assets/video/companies/ehang.jpg"></video>
+            <div class="cap"><img src="assets/logos/ehang.png" alt="" onerror="this.remove()"><b>EHang</b></div>
+          </div>
+          <div class="reel" data-src="assets/video/companies/xpeng.mp4">
+            <img class="poster" src="assets/video/companies/xpeng.jpg" alt="XPeng AeroHT" loading="lazy">
+            <video muted loop playsinline preload="none" poster="assets/video/companies/xpeng.jpg"></video>
+            <div class="cap"><img src="assets/logos/xpeng.png" alt="" onerror="this.remove()"><b>XPeng AeroHT</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="srow">
+        <div class="txt">
+          <h3><span class="de">E-Mobilität &amp; neue Energie</span><span class="en">EV &amp; New Energy</span></h3>
+          <p><span class="de">Vom Smartphone-Riesen zum Autobauer — Chinas EV-Welle aus nächster Nähe.</span><span class="en">From smartphone giant to carmaker — China's EV wave up close.</span></p>
+          <p class="names"><b>Xiaomi</b> · BYD · CATL · NIO</p>
+          <div class="logos">
+            <span class="logo-chip"><img src="assets/logos/byd.png" alt="BYD" loading="lazy" onerror="this.remove()"><b>BYD</b></span>
+            <span class="logo-chip"><img src="assets/logos/catl.png" alt="CATL" loading="lazy" onerror="this.remove()"><b>CATL</b></span>
+            <span class="logo-chip"><img src="assets/logos/nio.png" alt="NIO" loading="lazy" onerror="this.remove()"><b>NIO</b></span>
+          </div>
+        </div>
+        <div class="tiles">
+          <div class="reel" data-src="assets/video/companies/xiaomi.mp4">
+            <img class="poster" src="assets/video/companies/xiaomi.jpg" alt="Xiaomi" loading="lazy">
+            <video muted loop playsinline preload="none" poster="assets/video/companies/xiaomi.jpg"></video>
+            <div class="cap"><img src="assets/logos/xiaomi.svg" alt="" onerror="this.remove()"><b>Xiaomi</b></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card tailored full">
+      <h3><span class="de">Besondere Wünsche?</span><span class="en">Tailored</span></h3>
+      <p class="cos"><span class="de">Deine Branche ist nicht dabei, oder du hast ein bestimmtes Unternehmen im Kopf? Sag Bescheid. Wir versuchen alles, um den Zugang zu bekommen.</span><span class="en">Have a specific industry in mind? We'll build the access around it.</span></p>
+    </div>
+
+    <p class="note"><span class="de">Welche Unternehmen du besuchst, hängt von der Reisezeit und deinen Schwerpunkten ab.</span><span class="en">Which companies you visit depends on your program, industry and timing.</span></p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap">
+    <span class="eyebrow"><span class="de">Über uns</span><span class="en">About</span></span>
+    <h2><span class="de">Peter &amp; Xi</span><span class="en">Peter &amp; Xi</span></h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p><span class="de">Wir sind Heinz-Peter Hölscher und Xi Qiao — ein deutsch-chinesisches Team mit Wurzeln in beiden Welten.</span><span class="en">We are Heinz-Peter Hölscher and Xi Qiao, a German-Chinese team with roots in both worlds.</span></p>
+        <p><span class="de">Xi war Unternehmensberaterin bei einer Top-Strategieberatung und Deep-Tech-Investorin, ausgebildet in Frankreich, mit über einem Jahrzehnt in Chinas Wirtschafts- und Technologielandschaft. Sie denkt in Frameworks, erfasst Geschäftsmodelle im Handumdrehen und bringt den scharfen, kontextstarken Blick mit, der aus einem Firmenbesuch eine strategische Einordnung macht.</span><span class="en">Xi is a former MBB management consultant and deep tech investor, educated in France, with over a decade inside China's business and technology landscape. She thinks in frameworks, reads business models quickly, and brings the kind of sharp, contextual insight that turns a company visit into a strategic read.</span></p>
+        <p><span class="de">Heinz-Peter bringt die europäische Perspektive mit. Er erklärt dir China nicht aus dem Reiseführer; er ist Unternehmer, der hier selbst Lieferketten aufgebaut hat, in Fabriken eingekauft und Deals vor Ort verhandelt hat. Er kam mit denselben Fragen, die du mitbringst. Er weiß, was sich ändert, wenn man aufhört, über China zu lesen, und anfängt, dort Geschäfte zu machen.</span><span class="en">Heinz-Peter brings the European perspective with him. He doesn't translate China for you from a guidebook; he's an entrepreneur who has built supply chains here himself, sourcing from factories and negotiating deals on the ground. He came with the same questions you're carrying. He knows what changes when you stop reading about China and start doing business in it.</span></p>
+        <p class="lead-line"><span class="de">Lass uns gemeinsam Chinas Tech-Welt entdecken und Erinnerungen schaffen, die bleiben.</span><span class="en">Together, we don't just open doors. We make sure you know what you're looking at when you walk through them.</span></p>
+        <p class="stat"><span class="de">2 Kulturen · 4 Sprachen · Vor Ort</span><span class="en">2 cultures · 4 languages · On the ground</span></p>
+      </div>
+      <figure class="about-photo">
+        <img src="assets/img/heinz-peter-xi-tencent.jpg" alt="Heinz-Peter Hölscher und Xi Qiao bei einem Tencent-Cloud-Event in Shenzhen" loading="lazy" width="1400" height="933">
+        <figcaption><span class="de">Heinz-Peter und Xi bei einem Tencent-Cloud-Event in Shenzhen</span><span class="en">Heinz-Peter and Xi at a Tencent Cloud event in Shenzhen</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+
+      <div class="contact-aside">
+        <span class="eyebrow"><span class="de">Kontakt</span><span class="en">Contact</span></span>
+        <h2><span class="de">Erzähl uns von deinem Vorhaben</span><span class="en">Tell us about your plan</span></h2>
+        <p class="intro"><span class="de">Kostenlos und unverbindlich. Schreib uns kurz, und wir antworten persönlich mit einem Vorschlag, der passt.</span><span class="en">Free and no obligation. Send us a note and we'll reply personally with a proposal that fits.</span></p>
+      </div>
+
+      <form class="lead" id="leadform">
+        <input type="hidden" name="access_key" value="b07b3b44-f342-4d39-ba88-6788af3ca1bf">
+        <input type="hidden" name="subject" value="Neue Anfrage — China Frontier">
+        <input type="hidden" name="from_name" value="China Frontier Website">
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+
+        <div class="frow">
+          <div class="field">
+            <label for="f-name"><span class="de">Name</span><span class="en">Name</span></label>
+            <input id="f-name" type="text" name="name" required>
+          </div>
+          <div class="field">
+            <label for="f-email"><span class="de">E-Mail</span><span class="en">Email</span></label>
+            <input id="f-email" type="email" name="email" required>
+          </div>
+        </div>
+
+        <div class="frow">
+          <div class="field">
+            <label for="f-company"><span class="de">Firma</span><span class="en">Company</span></label>
+            <input id="f-company" type="text" name="company">
+          </div>
+          <div class="field">
+            <label for="f-title"><span class="de">Position</span><span class="en">Title</span></label>
+            <input id="f-title" type="text" name="title">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-interest"><span class="de">Woran bist du interessiert?</span><span class="en">Interest</span></label>
+          <select id="f-interest" name="interest">
+            <option value="China Tech Tour" data-de="China Tech Tour — Reise in der Gruppe" data-en="China Tech Tour — group trip">China Tech Tour — group trip</option>
+            <option value="Business Access" data-de="Business Access — individuell" data-en="Business Access — one-to-one">Business Access — one-to-one</option>
+            <option value="Not sure yet" data-de="Noch unsicher" data-en="Not sure yet">Not sure yet</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="f-message"><span class="de">Möchtest du noch etwas ergänzen?</span><span class="en">Anything you'd like to add?</span></label>
+          <textarea id="f-message" name="message"></textarea>
+        </div>
+
+        <button class="btn btn-primary" type="submit" id="f-submit">
+          <span class="de">Senden</span><span class="en">Send</span>
+        </button>
+        <p class="formnote"><span class="de">Wir melden uns persönlich bei dir.</span><span class="en">We'll get back to you personally.</span></p>
+        <div class="formmsg" id="f-msg" role="status" aria-live="polite"></div>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap nav">
+    <div class="brand">China <b>Frontier</b></div>
+    <div>© <span id="yr"></span> China Frontier · <span class="de">China Tech- &amp; Business-Touren · Peter &amp; Xi</span><span class="en">China tech &amp; business tours · Peter &amp; Xi</span></div>
+  </div>
+</footer>
+
+<script>
+  function setLang(l){
+    document.documentElement.lang = l;
+    document.getElementById('b-de').classList.toggle('active', l==='de');
+    document.getElementById('b-en').classList.toggle('active', l==='en');
+    // <option> can't hold spans, so swap the label text directly (value stays EN)
+    var opts = document.querySelectorAll('select option[data-de]');
+    for(var i=0;i<opts.length;i++){
+      opts[i].textContent = opts[i].getAttribute(l==='de' ? 'data-de' : 'data-en');
+    }
+  }
+  setLang(document.documentElement.lang === 'de' ? 'de' : 'en');
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // ---- Hero: rotation of 8 city clips, crossfade, never freezes ----
+  // Every clip loops endlessly; we only switch when the next one is provably
+  // ready (readyState >= 3) AND actually playing. Only one is preloaded ahead.
+  (function(){
+    var HERO = [
+      'hero-9-tower',    'hero-1-sunset',  'hero-5-cityscape', 'hero-5-riverskyline',
+      'hero-10-topdown', 'hero-11-dusk',   'hero-8-mist',      'hero-6-curved'
+    ];
+    var hero = document.getElementById('hero');
+    var dots = document.getElementById('heroDots');
+    if(!hero || !dots) return;
+
+    var vids = HERO.map(function(name, i){
+      var v = document.createElement('video');
+      v.muted = true; v.loop = true; v.playsInline = true;
+      v.setAttribute('playsinline','');                     // iOS
+      v.className = 'bgv';
+      v.preload = i === 0 ? 'auto' : 'none';
+      v.poster  = 'assets/video/' + name + '.jpg';
+      if(i === 0) v.src = 'assets/video/' + name + '.mp4';
+      hero.prepend(v);
+      dots.insertAdjacentHTML('beforeend', '<i' + (i===0 ? ' class="on"' : '') + '></i>');
+      return v;
+    });
+    var dotEls = dots.querySelectorAll('i');
+
+    var cur = 0, shownSince = 0;
+    var MIN_SHOW = 6500;              // Fallback, solange die Dauer noch unbekannt ist
+    var LEAD     = 500;               // ms vor dem Loop-Ende umblenden
+
+    // Die Clips sind 4,6 bis 10 s lang. Mit einer festen Standzeit springen die
+    // kurzen sichtbar auf ihren Anfang zurueck, bevor gewechselt wird. Deshalb
+    // richtet sich die Standzeit nach der Laenge des jeweiligen Clips.
+    function showTime(v){
+      var d = v.duration;
+      if(!d || !isFinite(d)) return MIN_SHOW;
+      return Math.max(3000, d * 1000 - LEAD);
+    }
+
+    function ensureLoaded(i){
+      var v = vids[i];
+      if(!v.getAttribute('src')){ v.src = 'assets/video/' + HERO[i] + '.mp4'; v.preload = 'auto'; v.load(); }
+    }
+
+    vids[0].classList.add('on');
+    vids[0].play().then(function(){ shownSince = performance.now(); }).catch(function(){});
+    vids[0].addEventListener('playing', function(){ if(!shownSince) shownSince = performance.now(); });
+    vids[0].addEventListener('canplaythrough', function(){ ensureLoaded(1); }, {once:true});
+
+    function tick(){
+      if(!shownSince) return;
+      if(performance.now() - shownSince < showTime(vids[cur])) return;
+
+      var nxt = (cur + 1) % vids.length;
+      ensureLoaded(nxt);
+      if(vids[nxt].readyState < 3) return;                  // noch nicht bereit -> aktueller loopt weiter
+
+      var from = vids[cur];
+      vids[nxt].currentTime = 0;
+      vids[nxt].play().then(function(){
+        vids[nxt].classList.add('on');
+        from.classList.remove('on');
+        dotEls[cur].classList.remove('on'); dotEls[nxt].classList.add('on');
+        setTimeout(function(){ if(from !== vids[nxt]) from.pause(); }, 1600);
+        cur = nxt;
+        shownSince = performance.now();
+        ensureLoaded((cur + 1) % vids.length);
+      }).catch(function(){});
+    }
+    setInterval(tick, 400);
+
+    document.addEventListener('visibilitychange', function(){
+      if(document.hidden) vids[cur].pause();
+      else { vids[cur].play().catch(function(){}); shownSince = performance.now(); }
+    });
+  })();
+
+  // ---- Company reels: load just before visible, autoplay muted in view, pause out of view ----
+  (function(){
+    var preIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting) return;
+        var v = e.target.querySelector('video');
+        if(v && !v.src){ v.src = e.target.getAttribute('data-src'); v.preload = 'auto'; v.load(); }
+        preIO.unobserve(e.target);
+      });
+    },{rootMargin:'800px 800px 800px 800px'});
+
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        var v = e.target.querySelector('video');
+        if(!v) return;
+        if(e.isIntersecting){
+          if(!v.src){ v.src = e.target.getAttribute('data-src'); v.load(); }
+          v.play().then(function(){ v.classList.add('on'); }).catch(function(){});
+        } else {
+          v.pause(); v.classList.remove('on');
+        }
+      });
+    },{threshold:.3});
+
+    document.querySelectorAll('.reel').forEach(function(r){ preIO.observe(r); io.observe(r); });
+  })();
+
+  // Pre-select the Interest field when a product button is clicked
+  function pickInterest(val){
+    var sel = document.getElementById('f-interest');
+    if(sel) sel.value = val;
+  }
+
+  // ---- Web3Forms submit (AJAX, no page reload) ----
+  (function(){
+    var form = document.getElementById('leadform');
+    if(!form) return;
+    var btn = document.getElementById('f-submit');
+    var msg = document.getElementById('f-msg');
+    var de = function(d,e){ return document.documentElement.lang === 'de' ? d : e; };
+
+    form.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var key = form.querySelector('[name="access_key"]').value;
+      if(!key || key === 'YOUR_ACCESS_KEY_HERE'){
+        msg.className = 'formmsg err';
+        msg.textContent = de(
+          'Formular noch nicht aktiv: Web3Forms Access-Key fehlt. Schreibt uns solange direkt per E-Mail.',
+          'Form not live yet: Web3Forms access key missing. Please email us directly for now.'
+        );
+        return;
+      }
+      btn.disabled = true;
+      msg.className = 'formmsg';
+      var data = Object.fromEntries(new FormData(form).entries());
+      fetch('https://api.web3forms.com/submit', {
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body: JSON.stringify(data)
+      })
+      .then(function(r){ return r.json(); })
+      .then(function(res){
+        if(res.success){
+          form.reset();
+          msg.className = 'formmsg ok';
+          msg.textContent = de(
+            'Danke! Eure Anfrage ist angekommen — wir melden uns persönlich.',
+            'Thanks! Your request came through — we’ll get back to you personally.'
+          );
+        } else {
+          throw new Error(res.message || 'error');
+        }
+      })
+      .catch(function(){
+        msg.className = 'formmsg err';
+        msg.textContent = de(
+          'Da ging etwas schief. Versucht es noch einmal oder schreibt uns direkt per E-Mail.',
+          'Something went wrong. Please try again or email us directly.'
+        );
+      })
+      .finally(function(){ btn.disabled = false; });
+    });
+  })();
+</script>
+</body>
+</html>
